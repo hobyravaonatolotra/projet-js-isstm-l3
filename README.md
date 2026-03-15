@@ -12,14 +12,14 @@ L'objectif est de créer une application qui permet à un utilisateur de saisir 
 - **Concepts & Glossaire** : Comprendre le jargon technique (voir [GLOSSARY.md](./GLOSSARY.md)).
 
 ## Structure du Projet
-- `/apps/react-starter` : Le projet de base pour ceux qui choisissent **React**.
-- `/apps/vue-starter` : Le projet de base pour ceux qui choisissent **Vue.js**.
+- `/starters/react-starter` : Le projet de base pour ceux qui choisissent **React**.
+- `/starters/vue-starter` : Le projet de base pour ceux qui choisissent **Vue.js**.
 - `/server-mock` : Le petit serveur "IA" à lancer localement si vous n'avez pas de clé API réelle.
 - `GLOSSARY.md` : Toutes les définitions importantes pour ne pas être perdu.
 
-## Comment démarrer ?
+## 🛠️ Comment démarrer ?
 1. **Lancer le serveur IA** : `cd server-mock && node server.js`
-2. **Choisir son Framework** : Aller dans le dossier `/apps/react-starter` ou `/apps/vue-starter`.
+2. **Choisir son Framework** : Aller dans le dossier `/starters/react-starter` ou `/starters/vue-starter`.
 3. **Installer les dépendances** : `npm install`
 4. **Lancer l'app** : `npm run dev`
 

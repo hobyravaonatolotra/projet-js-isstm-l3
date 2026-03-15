@@ -3,6 +3,7 @@
 Ce document est un guide de survie pour comprendre les termes techniques utilisés dans ce projet et dans le monde des frameworks JavaScript.
 
 | **Framework** | Un ensemble d'outils et de règles de structure (ex: React, Vue) qui facilite le développement d'applications 
+
 ---
 
 ## Concepts Généraux (Valables partout)
@@ -17,13 +18,17 @@ Ce document est un guide de survie pour comprendre les termes techniques utilis�
 | **Asynchrone** | Une action qui prend du temps (comme un appel API). On utilise `async` et `await` pour gérer cela. |
 | **Async / Await** | Mots-clés en JavaScript pour gérer des tâches qui prennent du temps (comme télécharger des données) sans bloquer l'application. |
 
-(Réactivité). |
+---
+
+| Réactivité |
+| :--- | :--- |
 | **Hook (React) / Ref (Vue)** | Fonctions spéciales permettant de "brancher" de la logique (comme l'état) dans vos composants. |
 | **Endpoint** | L'adresse URL précise d'une API (ex: `http://localhost:3000/generate`). |
 | **CORS** | Sécurité du navigateur qui autorise (ou non) votre application à parler à un serveur situé sur une autre adresse. |
 | **LocalStorage** | Petite base de données intégrée à votre navigateur pour stocker des infos même après avoir fermé l'onglet. |
 | **Mock** | Un "faux" serveur ou une "fausse" donnée utilisée pour tester sans dépendre d'une connexion internet ou d'un coût API. |
 | **JSON** | Le format de texte standard pour échanger des données entre un serveur et votre application JS. |
+
 ---
 
 ## Dictionnaire React
