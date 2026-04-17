@@ -32,3 +32,6 @@ Consultez le fichier `instruction.md` à la racine pour connaître les étapes d
 3. TODISOA Fanambinana Vacille Auguste
 4. TIANDRAINY ABDOURAHIM Ben Chackrà
 5. RAVAONATOLOTRA Hoby
+6. TIANDRAZANA Maminiaina Julio
+7. JAONASY Marie Claritta
+8. RANDRIAMAHAFALY Safidy Thierry
