@@ -1,0 +1,187 @@
+/* App.css — GROUPE 1 : Style simple et propre */
+
+/* ── Base ── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #222;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.app {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+/* ── Header ── */
+.header {
+  text-align: center;
+  padding: 30px 0 20px;
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 30px;
+}
+
+.header-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.header-slogan {
+  color: #666;
+  font-size: 1rem;
+  margin-top: 6px;
+}
+
+/* ── Formulaire ── */
+.search-form {
+  margin-bottom: 30px;
+}
+
+.search-form form {
+  display: flex;
+  gap: 10px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fff;
+  color: #222;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: #4a90e2;
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #357abd;
+}
+
+/* ── Grille de résultats ── */
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+/* ── IdeaCard ── */
+.idea-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.idea-card h3 {
+  font-size: 1.05rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.idea-card p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.favorite-btn {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-top: 12px;
+  color: #444;
+}
+
+.favorite-btn:hover {
+  border-color: #e05;
+  color: #e05;
+}
+
+.favorite-btn.active {
+  border-color: #e05;
+  color: #e05;
+  background-color: #fff0f3;
+}
+
+/* ── Favoris ── */
+.favorites-section {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 2px solid #ddd;
+}
+
+.favorites-section h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: #222;
+}
+
+.favorites-empty {
+  color: #888;
+  font-style: italic;
+  padding: 16px;
+  border: 1px dashed #ccc;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* ── Chargement / erreur ── */
+.loading {
+  text-align: center;
+  padding: 30px;
+  color: #888;
+}
+
+.error-message {
+  background: #fff0f0;
+  border: 1px solid #f99;
+  border-radius: 6px;
+  padding: 12px;
+  color: #c00;
+  text-align: center;
+  margin-top: 16px;
+}
+.container {
+  max-width: 900px;  /* La barre ne dépassera jamais cette largeur */
+  margin: 0 auto;    /* Cela centre le cadre au milieu de l'écran */
+  padding: 0 20px;   /* Ajoute une petite marge de sécurité sur les côtés */
+}
+
+/* ── Responsive mobile ── */
+@media (max-width: 550px) {
+  .search-form form {
+    flex-direction: column;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+}
