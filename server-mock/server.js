@@ -1,5 +1,6 @@
 const http = require('http');
 
+
 const ideas = [
   "Une application de gestion de potager connectée avec de l'IA.",
   "Un assistant vocal pour les personnes âgées qui rappelle de prendre ses médicaments.",

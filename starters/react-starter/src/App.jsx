@@ -12,7 +12,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false)
 
 
-  const generateIdea = async () => {
+  const generateIdea = async (searchKeywords) => {
     // 📝 À faire : Appeler l'API http://localhost:3000/generate
     // N'oubliez pas de gérer le chargement !
     setIsLoading(true);
@@ -26,7 +26,7 @@ function App() {
     } catch (error) {
       console.error("Erreur de connexion au backend :", error);
     } finally {
-      setIsLoading(false);
+      setIsLoading(false); //pour enlever le chargement
     }
   }
 
@@ -35,28 +35,30 @@ function App() {
       {/* 🧩 Étape 1 : Le Header */}
       <Header />
 
-      {/*<header>
-        <h1>SmartIdea 🚀</h1>
-        <p>Le futur de vos projets commence ici.</p>
-      </header>
-        */} 
       {/* 🧩 Étape 2 : Le Formulaire */}
       <main>
         <div className="form-container">
           <SearchForm onSearch={generateIdea} />
-          {/* 
-          <input 
-            type="text" 
-            placeholder="Ex: Sport, IA, Écologie..." 
-          />
-          <button onClick={generateIdea}>Générer avec l'IA</button>
-          */}
+
         </div>
 
         {/* 🧩 Étape 3 & 4 : Résultats & Chargement */}
         <section className="results">
           {/* Affichez ici vos idées ou un loader */}
-        </section>
+          {isLoading && <p>⏳ L'IA choisit une idée pour vous...</p>}
+
+          {idea && !isLoading && (
+            <div className="idea-card">
+              <h2>Nouvelle Idée !</h2>
+              <p>{idea.idea}</p> 
+              <small>Généré le : {new Date(idea.timestamp).toLocaleTimeString()}</small>
+
+            </div>
+
+          )}
+
+         </section>
+
       </main>
     </div>
   )
