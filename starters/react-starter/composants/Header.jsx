@@ -1,4 +1,5 @@
 // Header.jsx — GROUPE 1
+import React from "react";
 
 function Header() {
   return (

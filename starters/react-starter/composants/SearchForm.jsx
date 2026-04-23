@@ -1,6 +1,6 @@
 // SearchForm.jsx — GROUPE 1
 
-import { useState } from "react";
+import React, { useState } from "react";
 
 function SearchForm({ onSearch }) {
   const [keywords, setKeywords] = useState("");
