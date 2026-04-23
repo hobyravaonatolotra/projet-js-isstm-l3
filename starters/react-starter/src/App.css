@@ -175,6 +175,31 @@ body {
   padding: 0 20px;   /* Ajoute une petite marge de sécurité sur les côtés */
 }
 
+/* Espacement de la section entière */
+.favorites-section {
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #f9f9f9; /* Un fond très léger pour différencier du haut */
+  border-radius: 15px;
+}
+
+/*  La GRILLE (Le plus important pour le look) */
+.favorites-grid {
+  display: grid;
+  /* Crée des colonnes automatiques de 280px minimum */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+  gap: 20px; /* Espace entre les cartes */
+  margin-top: 20px;
+}
+
+/*  Style pour le message quand c'est vide */
+.empty-msg {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  padding: 40px;
+}
+
 /* ── Responsive mobile ── */
 @media (max-width: 550px) {
   .search-form form {

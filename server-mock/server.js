@@ -27,7 +27,7 @@ const server = http.createServer((req, res) => {
   }
 
   if (req.url === '/generate' && (req.method === 'GET' || req.method === 'POST')) {
-    // Simuler un délai de "réflexion de l'IA"
+     // Simuler un délai de "réflexion de l'IA"
     setTimeout(() => {
       const randomIndex = Math.floor(Math.random() * ideas.length);
       const response = {
@@ -42,7 +42,9 @@ const server = http.createServer((req, res) => {
     res.writeHead(404);
     res.end(JSON.stringify({ error: 'Route non trouvée' }));
   }
+
 });
+
 
 const PORT = 3000;
 server.listen(PORT, () => {
