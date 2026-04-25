@@ -1,98 +1,119 @@
-import React, { useState } from 'react'
-import './App.css'
-import Header from '../composants/Header'
-import SearchForm from '../composants/SearchForm'
-import IdeaCard from '../composants/IdeaCard'
-import Favorites from '../composants/Favorites'
+
+import React , { useState, useEffect } from "react";
+import Header from "../composants/Header"
+import SearchForm from "../composants/SearchForm";
+import IdeaCard from "../composants/IdeaCard";
+import Favorites from "../composants/Favorites";
+import "./App.css";
+
+// URL du backend (Groupe 3)
+const API_URL = "http://localhost:3000/generate";
 
 function App() {
-  // 📝 À faire : Créer un état pour stocker les mots-clés
-  const [keywords, setKeywords] = useState("")
-  // 📝 À faire : Créer un état pour stocker les idées générées
-  const [idea, setIdea] = useState(null)
-  // 📝 À faire : Créer un état pour gérer le chargement (loading)
-  const [isLoading, setIsLoading] = useState(false)
-  // 📝 À faire : Créer un état pour garder la liste de favoris
+  // ── États principaux ──────────────────────────────────────
+  const [ideas, setIdeas] = useState([]);           // idées reçues de l'API
+  const [loading, setLoading] = useState(false);    // en cours de chargement ?
+  const [error, setError] = useState(null);         // message d'erreur
   const [favorites, setFavorites] = useState(() => {
-    // On essaie de récupérer ce qui est dans le localStorage
-    const saved = localStorage.getItem("smart-favorites");
-    // Si ça existe, on le transforme en objet JS, sinon on met un tableau vide []
-    return saved ? JSON.parse(saved) : [];
+    // Initialisation depuis localStorage (Groupe 4 gère la persistence)
+    try {
+      const saved = localStorage.getItem("smartidea-favorites");
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
   });
 
+  // Sauvegarde les favoris dans localStorage à chaque changement
+  useEffect(() => {
+    localStorage.setItem("smartidea-favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
-  const generateIdea = async (searchKeywords) => {
-    // 📝 À faire : Appeler l'API http://localhost:3000/generate
-    // N'oubliez pas de gérer le chargement !
-    setIsLoading(true);
-    setKeywords(searchKeywords); // Stockage des mots-clés
+  // ── Fonction principale : fetch vers le backend ───────────
+  async function handleSearch(keywords) {
+    setLoading(true);   // affiche le spinner
+    setError(null);     // efface l'erreur précédente
+    setIdeas([]);       // vide les anciens résultats
 
     try {
-      // Appel vers le serveur du Groupe 3
-      const response = await fetch("http://localhost:3000/generate");
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ keywords }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Erreur serveur : ${response.status}`);
+      }
+
       const data = await response.json();
+      setIdeas(data.ideas || []);
 
-      setIdea(data); // Stockage du JSON {title, description}
-    } catch (error) {
-      console.error("Erreur de connexion au backend :", error);
+    } catch (err) {
+      // Erreur réseau ou serveur non démarré
+      setError("Impossible de contacter le serveur. Vérifie que le Groupe 3 a lancé server.js !");
+      console.error("Fetch error:", err);
     } finally {
-      setIsLoading(false); //pour enlever le chargement
+      setLoading(false); // masque le spinner dans tous les cas
     }
+  }
 
-  };
+  // ── Gestion des favoris (utilisée par IdeaCard via prop) ──
+  function toggleFavorite(idea) {
+    setFavorites((prev) => {
+      const exists = prev.some((f) => f.title === idea.title);
+      if (exists) {
+        // Retirer des favoris
+        return prev.filter((f) => f.title !== idea.title);
+      } else {
+        // Ajouter aux favoris
+        return [...prev, idea];
+      }
+    });
+  }
 
-  const toggleFavorite = (selectedIdea) => {
-    let updated;
-    const isPresent = favorites.some(f => f.id === selectedIdea.id);
-
-    if (isPresent) {
-      updated = favorites.filter(f => f.id !== selectedIdea.id);
-    } else {
-      updated = [...favorites, selectedIdea];
-    }
-
-    setFavorites(updated);
-    localStorage.setItem("smart-favorites", JSON.stringify(updated));
-  };
-
+  // ── Rendu ─────────────────────────────────────────────────
   return (
-    <div className="App">
-      {/* 🧩 Étape 1 : Le Header */}
+    <div className="app">
+      {/* GROUPE 1 : composant d'en-tête */}
       <Header />
 
-      {/* 🧩 Étape 2 : Le Formulaire */}
-      <main>
-        <div className="form-container">
-          <SearchForm onSearch={generateIdea} />
+      {/* GROUPE 1 : formulaire de recherche
+          onSearch = notre fonction handleSearch */}
+      <SearchForm onSearch={handleSearch} />
 
-        </div>
+      {/* État de chargement */}
+      {loading && (
+        <p className="loading">Génération des idées en cours</p>
+      )}
 
-        {/* 🧩 Étape 3 & 4 : Résultats & Chargement */}
-        <section className="results">
-          {/* Affichez ici vos idées ou un loader */}
-          {isLoading && <p>⏳ L'IA choisit une idée pour vous...</p>}
+      {/* Message d'erreur */}
+      {error && (
+        <p className="error-message">⚠️ {error}</p>
+      )}
 
-          {idea && !isLoading && (
+      {/* GROUPE 4 : grille de résultats */}
+      {ideas.length > 0 && (
+        <div className="results-grid">
+          {ideas.map((idea, index) => (
             <IdeaCard
+              key={index}
               idea={idea}
+              isFavorite={favorites.some((f) => f.title === idea.title)}
               onToggleFavorite={toggleFavorite}
-              isFavorite={favorites.some(f => f.id === idea.id)}
             />
+          ))}
+        </div>
+      )}
 
-          )}
-
-        </section>
-        
-
-        {/* On ajoute le composant Favorites en bas */}
-        <Favorites
-          favoriteList={favorites}
-          onRemove={toggleFavorite}
-        />
-
-      </main>
+      {/* GROUPE 4 : section favoris */}
+      <Favorites
+        favoriteList={favorites}
+        onRemove={toggleFavorite}
+    
+      />
     </div>
   );
 }
 
-export default App
+export default App;

@@ -5,7 +5,7 @@ function IdeaCard({ idea, isFavorite, onToggleFavorite }) {
         <div className="idea-card">
             {/* Affichage des données du serveur */}
             <h2>{idea.title || "Idée IA"}</h2>
-            <p>{idea.idea || "Aucune description disponible"}</p>
+            <p>{idea.description || "Aucune description disponible"}</p>
 
             {/* Bouton Favoris dynamique */}
             <button
