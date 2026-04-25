@@ -1,0 +1,39 @@
+body { 
+    font-family: sans-serif; 
+    text-align: center; 
+    padding: 50px; 
+    background: #f4f4f9; 
+}
+
+.card { 
+    background: white; 
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+    display: inline-block; 
+    min-width: 300px; 
+}
+
+button { 
+    background: #6200ee; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin-top: 10px; 
+}
+
+input { 
+    padding: 10px; 
+    width: 200px; 
+    border-radius: 5px; 
+    border: 1px solid #ccc; 
+}
+
+/* #idea-display {  */
+    font-weight: bold; 
+    margin: 20px 0; 
+    color: #333; 
+    min-height: 20px; 
+/* } */
