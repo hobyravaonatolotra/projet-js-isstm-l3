@@ -1,9 +1,9 @@
 
 import React , { useState, useEffect } from "react";
-import Header from "../composants/Header"
-import SearchForm from "../composants/SearchForm";
-import IdeaCard from "../composants/IdeaCard";
-import Favorites from "../composants/Favorites";
+import Header from "../components/Header"
+import SearchForm from "../components/SearchForm";
+import IdeaCard from "../components/IdeaCard";
+import Favorites from "../components/Favorites";
 import "./App.css";
 
 // URL du backend (Groupe 3)
